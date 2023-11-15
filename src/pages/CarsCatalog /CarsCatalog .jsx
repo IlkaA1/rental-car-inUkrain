@@ -4,7 +4,7 @@
  import { useEffect } from 'react';
  import { useDispatch, useSelector } from 'react-redux';
  import { fetchTasks} from '../../redux/operations';
- import { getAll,selectVisibleAuto,gettAllCars,selectStatusFilter } from '../../redux/selectors';
+ import { getAll,selectVisibleAuto,gettAllCars } from '../../redux/selectors';
 
 import CardItem from '../../components/CardItem/CardItem'
 import {Wrapper,WrapperButton,Button,TextButtun,SearchButton,FilterDiv} from './CarsCatalog.styled'
