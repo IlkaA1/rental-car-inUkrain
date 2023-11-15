@@ -42,47 +42,7 @@ export const CarsCatalog = () => {
 
   
  
-  
-  // const filterQwery = useSelector(selectStatusFilter);
-  
- 
-  // const selectVisibleAutoFunk = () =>{
 
-
-  // const {serchName, maxMails, minMails, price} = filterQwery
-  
-  
-  // const qwery = serchName.toLowerCase().toString();
-  // const maxMileg = Number(maxMails);
-  // const minMileg = Number(minMails);
-  // const carPrice = Number(price)
-
-  // const filter1 = cars.filter(car => car.make.toLowerCase().includes(qwery) );
-  // console.log('filter1', filter1)
-
-  
-  // const filter2 = filter1.filter(car =>  {
-  // const price = car.rentalPrice
-  // return parseFloat(price.replace("$", "")) <= carPrice
-  // }) 
-  // console.log('filter2', filter2)
-
-
-  
-  // const filter3 = filter2.filter(car => car.mileage >= minMileg);
-  // console.log('filter3', filter3)
-
-
-  
-  // const filter4 = filter3.filter(car => car.mileage <= maxMileg);
-  // console.log('filter4', filter4)
-  
-
-
-  // console.log(filter4)
-  // // return filter4;
-  
-  // }
 
 const cars = useSelector(gettAllCars);
 
