@@ -5,8 +5,6 @@ export const Wrapper = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   gap: 50px 29px;
-  padding-left: 128px;
-  padding-right: 128px;
   margin-top: 50px;
   margin-bottom: 50px;
 `;
@@ -38,7 +36,6 @@ height:48px;
 border-radius: 12px;
 background-color:rgba(52, 112, 255, 1);
 border:none;
-font-family: 'Manrope';
 font-size: 14px;
 font-weight: 600;
 line-height: 20px;
@@ -54,5 +51,20 @@ export const FilterDiv = styled.div`
     justify-content: center;
 `
 
+export const NotFound = styled.div`
+width: 400px;
+height: 50px;
+padding: 12px;
+border-radius: 12px;
+background-color: rgba(52, 112, 255, 70%);
+
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+color:rgba(255, 255, 255, 1);
+text-align:center;
+align-items:center;
+
+`
 
   

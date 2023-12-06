@@ -1,73 +1,64 @@
-//  import {PagesContainer} from '../../components/App.styled'
+ import {PagesContainer} from '../../components/App.styled'
  import React, { useState } from 'react';
  import{Filter} from '../../components/Filter/Filter'
  import { useEffect } from 'react';
  import { useDispatch, useSelector } from 'react-redux';
  import { fetchTasks} from '../../redux/operations';
- import { getAll,selectVisibleAuto,gettAllCars } from '../../redux/selectors';
-
+ import { getAll,selectVisibleAuto } from '../../redux/selectors';
+ import { filterSerchName,filterMaxMails,filterMinMails,filterPrice} from '../../redux/filterSlice';
 import CardItem from '../../components/CardItem/CardItem'
-import {Wrapper,WrapperButton,Button,TextButtun,SearchButton,FilterDiv} from './CarsCatalog.styled'
+import {Wrapper,WrapperButton,Button,TextButtun,SearchButton,FilterDiv,NotFound} from './CarsCatalog.styled'
 
  
 
 
 
 export const CarsCatalog = () => {
-  
-  const [page, setPage] = useState(1);
-  // const [cars, setCars] = useState([]);
-
+const [page, setPage] = useState(1);
+  const [cars, setCars] = useState([]);
+  const items = useSelector(getAll);
   const dispatch = useDispatch();
-  const {items} = useSelector(getAll);
-  
+ 
+ const mark =  useSelector(selectVisibleAuto);
 
 
+console.log(items)
   useEffect(()=>{
     if(!items){return}
-   
-   },[items])
+    setCars(items)
+    dispatch(filterSerchName(''));
+    dispatch(filterPrice(''));
+    dispatch(filterMinMails(''));
+    dispatch(filterMaxMails(''));
+   },[items,dispatch])
   
    useEffect(() => {
-     
     dispatch(fetchTasks(page));
   }, [dispatch,page]);
+
+
 
   const loadMore = () => {
     setPage(page + 1);
   };
 
 
-
-
-  
- 
-
-
-const cars = useSelector(gettAllCars);
-
-useEffect(() => {
-  if(!cars.items){return}
-  
-}, [dispatch,cars]);
-
 const handelClick = () => {
- console.log(dispatch(selectVisibleAuto)) ;
+  setCars(mark)
+ console.log(mark) ;
 }
   
-
-
-  
-// onClick={handelClick}
     return <>
-    {/* <PagesContainer> */}
-    <FilterDiv><Filter/><SearchButton onClick={handelClick}  >Search</SearchButton></FilterDiv>
+    <PagesContainer>
+    <FilterDiv><Filter/><SearchButton onClick={handelClick}>Search</SearchButton></FilterDiv>
    {items&&(
       <> <Wrapper>
-        {items&&items.map(item => <CardItem data={item} key={item.id} ></CardItem>)}
+        {cars.length > 0? (cars.map(item => <CardItem data={item} key={item.id} ></CardItem>)):
+        (<NotFound><p>Sorry, but nothing was found for your search!</p>
+          <p>Try changing the settings🤔</p></NotFound>)}
       </Wrapper>
       <WrapperButton>
-          {items&&items.length >= 12 && (
+          {cars.length >= 12 && (
             <Button type="button" onClick={loadMore}>
               <TextButtun>Load more</TextButtun>
             </Button>
@@ -76,8 +67,7 @@ const handelClick = () => {
         </> 
    )}
 
-{/*  
-    </PagesContainer> */}
+</PagesContainer>
     </>
 }
 

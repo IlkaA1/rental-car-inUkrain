@@ -3,8 +3,6 @@ import { rootReducer } from './reducer';
 import { persistStore, persistReducer } from 'redux-persist';
 
 import {
-  // persistStore,
-  // persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,7 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage'; 
 
 
 

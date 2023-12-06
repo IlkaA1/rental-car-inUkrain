@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllcars } from "../operations";
+import { fetchAllcars } from "./operations";
 
 const allCarsSlice = createSlice({
   name: "cars",
@@ -23,4 +23,6 @@ const allCarsSlice = createSlice({
     },
   },
 });
+
+
 export const allCarsReducer = allCarsSlice.reducer;

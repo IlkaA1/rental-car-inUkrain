@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 import { tasksReducer } from './catalogSlice';
-import {filterReducer} from './select/select'
-import {allCarsReducer} from './select/allCarsSlice'
+import {filterReducer} from './filterSlice'
+import {allCarsReducer} from './allCarsSlice'
+import {favoriteReducer} from './favoriteSlice'
+
 
 export const rootReducer = combineReducers({
     catalog: tasksReducer,
     filters: filterReducer,
-    allCars:allCarsReducer
+    allCars:allCarsReducer,
+    favorite: favoriteReducer
+
 });
 

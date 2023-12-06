@@ -1,32 +1,53 @@
-import Checkbox from '@mui/material/Checkbox';
-import { StylesFavoriteBorder, StylesFavorite } from './FavoriteIcon.styled';
+
+// import { BtnFavorite} from './FavoriteIcon.styled';
+// import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { ReactComponent as IconHeart } from '../../images/normal.svg';
+// import {addFavoritItems,deleteFavoritItems} from '../../redux/favoriteSlice'
+
+
+// export default function FavoriteIcon({ data }) {
+//   const [favorite, setFavorite] = useState(false);
+//   const dispatch = useDispatch();
+
+
+
+
+//   const handelFavorite = () => {
+//  favorite? setFavorite(false): setFavorite(true);
+//  favorite?  dispatch(deleteFavoritItems(data.id)):dispatch(addFavoritItems(data)) ;
+//   }
+
+//   return (
+//   <>
+//   <BtnFavorite onClick={handelFavorite} isFavorite={favorite}><IconHeart/></BtnFavorite>
+//   </>
+//   );
+// }
+
+// FavoriteIcon.jsx
+
+import { BtnFavorite } from './FavoriteIcon.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../redux/favoriteSlice';
-import { selectFavorites } from 'redux/selectors';
+import { ReactComponent as IconHeart } from '../../images/normal.svg';
+import { addFavoriteItem, deleteFavoriteItem } from '../../redux/favoriteSlice';
 
 export default function FavoriteIcon({ data }) {
+  
+  const isFavorite = useSelector(state => state.favorite.some(item => item.id === data.id));
   const dispatch = useDispatch();
 
-  const cars = useSelector(selectFavorites);
-
-  const isChecked = cars.some(({ id }) => id === data.id);
-
-  const handleToggleFavorite = () => {
-    if (isChecked) {
-      dispatch(removeFavorite(data));
+  const handleFavorite = () => {
+    if (isFavorite) {
+      dispatch(deleteFavoriteItem(data));
     } else {
-      dispatch(addFavorite(data));
+      dispatch(addFavoriteItem(data));
     }
   };
 
   return (
-    <div style={{ position: 'absolute', top: '0', right: '0' }}>
-      <Checkbox
-        icon={<StylesFavoriteBorder />}
-        checkedIcon={<StylesFavorite />}
-        checked={isChecked}
-        onChange={handleToggleFavorite}
-      />
-    </div>
+    <BtnFavorite onClick={handleFavorite} isFavorite={isFavorite}>
+      <IconHeart />
+    </BtnFavorite>
   );
 }

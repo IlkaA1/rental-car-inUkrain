@@ -8,23 +8,8 @@ import {CarsCatalog} from '../pages/CarsCatalog /CarsCatalog ';
 import { Header } from './Header/Header';
 
 
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { fetchTasks } from '../redux/operations';
-
 
 export const App = () => {
-// const dispatch = useDispatch();
-
-
-//   useEffect(() => {
-//     dispatch(fetchTasks());
-//   }, [dispatch]);
-
-
-
-
-
   
   return (
     <>

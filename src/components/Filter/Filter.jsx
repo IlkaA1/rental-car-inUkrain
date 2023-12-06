@@ -1,8 +1,8 @@
 import Select from 'react-select';
 import React, { useState } from 'react';
- import {LabelSelect,SelectPrice,Price,SearchDiv,MileageSearch } from './Filter.styled'
+ import {LabelSelect,SelectPrice,SearchDiv,MileageSearch } from './Filter.styled'
  import { useDispatch  } from 'react-redux';
- import { filterContact,filterMaxMails,filterMinMails,filterPrice} from '../../redux/select/select';
+ import { filterSerchName,filterMaxMails,filterMinMails,filterPrice} from '../../redux/filterSlice';
 
 const options  =[
    { value: "Buick", label: "Buick" },
@@ -28,6 +28,26 @@ const options  =[
    { value: 'Land', label: 'Land' },
  ];
 
+ const optionsPrice = [
+  {value:"10",  label:"10$"},
+  {value:"20",  label:"20$"},
+  {value:"30",  label:"30$"},
+  {value:"40",  label:"40$"},
+  {value:"50",  label:"50$"},
+  {value:"60",  label:"60$"},
+  {value:"70",  label:"70$"},
+  {value:"80",  label:"80$"},
+  {value:"90",  label:"90$"},
+  {value:"100",  label:"100$"},
+  {value:"200",  label:"200$"},
+  {value:"300",  label:"300$"},
+  {value:"400",  label:"400$"},
+  {value:"500",  label:"500$"},
+  {value:"600",  label:"600$"},
+  {value:"700",  label:"700$"},
+  {value:"800",  label:"800$"},
+ ]
+
  
  
 
@@ -35,23 +55,13 @@ const options  =[
 
 export const Filter = () => {
  const [selectedOption, setSelectedOption] = useState(null);
+ const [selectedOptionPrice, setSelectedOptionPrice] = useState(null);
+ const dispatch = useDispatch();
 
- 
-
-   const dispatch = useDispatch();
-
-
-  
-
-  const handleChange = (selectedOption) => {
+const handleChange = (selectedOption) => {
      setSelectedOption(selectedOption);
-     dispatch(filterContact(selectedOption.value));
-   };
-
-  const handleInput = (evt) => {
-   const value = evt.target.value
-   dispatch(filterContact(value));
-   };
+     dispatch(filterSerchName(selectedOption.value));
+};
 
 const handelMileageMax = (evt) =>{
  const milegMax = evt.currentTarget.value;
@@ -63,8 +73,9 @@ const handelMileageMin = (evt) =>{
  dispatch(filterMinMails(milegMin));
 }
 
-const handelPrice = (evt) =>{
-  const price = evt.target.value;
+const handelPrice = (SelectedOptionPrice) =>{
+  setSelectedOptionPrice(SelectedOptionPrice)
+  const price = SelectedOptionPrice.value;
   dispatch(filterPrice(price));
 }
 
@@ -82,8 +93,6 @@ const handelPrice = (evt) =>{
        value={selectedOption}
         onChange={handleChange}
          options={options}
-         onKeyDown={handleInput}
-        noOptionsMessage= { ({ inputValue: string }) =>  null }
         styles={{
             control: (baseStyles) => ({
              ...baseStyles,
@@ -91,7 +100,6 @@ const handelPrice = (evt) =>{
               height: 48,
               borderRadius: 14,
               backgroundColor:'rgba(247, 247, 251, 1)',
-              fontFamily: 'Manrope',
               fontSize: 18,
               borderColor:'rgba(247, 247, 251, 1)',}),
               placeholder: (provided) => ({
@@ -123,24 +131,45 @@ const handelPrice = (evt) =>{
       <SearchDiv>
       <LabelSelect>Price/ 1 hour</LabelSelect>
       <SelectPrice>To 
-      <Price onChange={handelPrice}>
-        
-      <option value={10}>10$</option>
-      <option value={20}>20$</option>
-      <option value={30}>30$</option>
-      <option value={40}>40$</option>
-      <option value={50}>50$</option>
-      <option value={60}>60$</option>
-      <option value={70}>70$</option>
-      <option value={80}>80$</option>
-      <option value={90}>90$</option>
-      <option value={100}>100$</option>
-      <option value={200}>200$</option>
-      <option value={300}>300$</option>
-      <option value={400}>400$</option>
-      
-      </Price>
-      </SelectPrice>
+      <Select
+       placeholder="$"
+       value={selectedOptionPrice}
+        onChange={handelPrice}
+         options={optionsPrice}
+        styles={{
+          
+            control: (baseStyles) => ({
+             ...baseStyles,
+              width: 100,
+              height: 38,
+              borderRadius: 14,
+              backgroundColor:'rgba(247, 247, 251, 1)',
+              fontSize: 18,
+              borderColor:'rgba(247, 247, 251, 1)',}),
+              placeholder: (provided) => ({
+                ...provided,
+                color:'rgba(18, 20, 23, 1)',
+              }),
+              indicatorSeparator:(base) =>({
+                display:'none',
+              }),
+              dropdownIndicator:(base) =>({
+                ...base,
+                color:'rgba(18, 20, 23, 1)',
+              }),
+              menu:(base,state)=>({
+                ...base,
+                width: 125,
+               borderRadius: 14,
+               border: '1 solidrgba(18, 20, 23, 0.05)',
+             }),
+            option: (defaultStyles, state) => ({
+              ...defaultStyles,
+              color: state.isFocused ? 'rgba(18, 20, 23, 1)' : 'rgba(18, 20, 23, 0.5)',
+              backgroundColor:"none",
+            }),
+        }}/>
+        </SelectPrice> 
       </SearchDiv>
       <div>
       <LabelSelect>Сar mileage / km</LabelSelect>

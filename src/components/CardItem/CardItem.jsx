@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Buttons from 'components/Buttons/Buttons';
 import BasicModal from 'components/Modal/Modal';
-// import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
+import FavoriteIcon from '../FavoriteIcon/FavoriteIcon';
 import {
   Wrapper,
   WrapperImage,
@@ -17,11 +17,13 @@ export default function CardItem({ data }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handelIcon = () => console.log('click')
+
 
   return (
     <Wrapper>
       <WrapperImage>
-        {/* <FavoriteIcon data={data} /> */}
+        <FavoriteIcon data={data}  onClick={handelIcon}/>
         <CarImg data={data} />
       </WrapperImage>
       <WrapperTitle>

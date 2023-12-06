@@ -1,11 +1,18 @@
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import { styled } from '@mui/material/styles';
 
-export const StylesFavorite = styled(Favorite)({
-  fill: '#3470FF',
-});
+import styled from '@emotion/styled';
 
-export const StylesFavoriteBorder = styled(FavoriteBorder)({
-  fill: '#FFFFFFCC',
-});
+export const BtnFavorite = styled.button`
+cursor: pointer;
+border: none;
+position: absolute;
+top: 0;
+right: 0;
+background-color:inherit;
+margin-top:14px;
+margin-right:14px;
+padding:0;
+--color2: ${props => props.isFavorite?'#3470FF':'white'};
+fill:${props => props.isFavorite?'#3470FF':'none'}; 
+
+
+`

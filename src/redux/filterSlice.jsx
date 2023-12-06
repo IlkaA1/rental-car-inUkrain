@@ -11,7 +11,7 @@ const filterSlice = createSlice({
     price:'',
   },
   reducers: {
-    filterContact(state, action) {
+    filterSerchName(state, action) {
       state.serchName = action.payload;
     },
     filterMaxMails(state, action) {
@@ -27,6 +27,6 @@ const filterSlice = createSlice({
   
 });
 
-export const { filterContact,filterMaxMails,filterMinMails,filterPrice } = filterSlice.actions;
+export const { filterSerchName,filterMaxMails,filterMinMails,filterPrice } = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
   
